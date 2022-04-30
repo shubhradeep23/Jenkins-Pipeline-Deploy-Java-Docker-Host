@@ -22,6 +22,7 @@ pipeline {
                 '''
             }
         }
+   }
 
           stage ('Build') {
             steps {
@@ -67,24 +68,17 @@ pipeline {
             }
           }
         }
-/*           stage('Deploy to Docker Container on Remote Docker Host EC2') {
-             steps{   
-               sshagent(credentials: ['docker-host-id']) {
-                   sh "ssh -o StrictHostKeyChecking=no ubuntu@${docker_host} uptime"
-                   sh "sudo docker run -d -p 8085:8085 ${imagename}:${tag}"
-                   sleep 30 
+          
+          stage('Deploy to Docker Container on Remote Docker Host EC2') {
+            steps{   
+              sshagent(credentials: ['docker-host-id']) {
+                sh "ssh -o StrictHostKeyChecking=no ubuntu@${docker_host} uptime"
+                sh "sudo docker run -d -p 8085:8085 ${imagename}:${tag}"
+                sleep 30 
+              }
+            }
+          } 
 
-       }
-     }
-   } */
-
-           stage('Deploy Java App on Docker Host EC2 Instance') {
-             steps{
-               sh "ssh ubuntu@${docker_host}"
-               sh "sudo docker run -d -p 8085:8085 ${imagename}:${tag}"
-               sleep 30
-             }
-           }
 
            stage('Health Check Stage-One') {
              steps {
