@@ -69,12 +69,11 @@ pipeline {
         }
            stage('Deploy to Docker Container on Remote Docker Host EC2') {
              steps{   
-               script {
-                 withCredentials([sshUserPrivateKey(credentialsId: 'docker-machine', keyFileVariable: 'docker-machine-key', usernameVariable: 'docker-machine-user')]) {
-                   sh "ssh -i ${docker-machine-key} ${docker-machine-user}@${docker_host}"
+               sshagent(credentials: ['docker-host-id']) {
+                   sh "ssh -o StrictHostKeyChecking=no ubuntu@${docker_host} uptime"
                    sh "sudo docker run -d -p 8085:8085 ${imagename}:${tag}"
                    sleep 30 
-         }
+
        }
      }
    }
