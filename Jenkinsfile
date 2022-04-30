@@ -2,6 +2,7 @@ pipeline {
         environment {
           imagename = "shubhradeepghosh23/test-app"
           tag = '1.0.4'
+          docker_host = '172.31.90.253'
           registryCredential = 'dockerhub-cred'
           dockerImage = ''
           CHECK_URL = "http://52.55.157.249:8085/greeting"
@@ -70,6 +71,7 @@ pipeline {
              steps{   
                script {
                  withCredentials([sshUserPrivateKey(credentialsId: 'docker-machine', keyFileVariable: 'docker-machine-key', usernameVariable: 'docker-machine-user')]) {
+                   sh "ssh -i ${docker-machine-key} ${docker-machine-user}@${docker_host}"
                    sh "sudo docker run -d -p 8085:8085 ${imagename}:${tag}"
                    sleep 30 
          }
