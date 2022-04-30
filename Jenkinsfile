@@ -22,7 +22,7 @@ pipeline {
                 '''
             }
         }
-   }
+   
 
           stage ('Build') {
             steps {
@@ -101,6 +101,7 @@ pipeline {
               }
           }
       }
+  }
 
       post {
         always {
