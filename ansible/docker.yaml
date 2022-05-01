@@ -1,12 +1,12 @@
 ---
-- hosts: dev
+- hosts: docker-host
   become: True
   tasks:
     
     - name: Start the container
       docker_container:
-        name: hariapp
-        image: "kammana/hariapp:{{DOCKER_TAG}}"
+        name: java-app
+        image: "{{image_name}}:{{image_tag}}"
         state: started
         published_ports:
           - 0.0.0.0:8085:8085
