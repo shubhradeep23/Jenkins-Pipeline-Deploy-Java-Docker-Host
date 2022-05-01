@@ -2,6 +2,7 @@ pipeline {
         environment {
           imagename = "shubhradeepghosh23/test-app"
           tag = '1.0.2'
+          docker_host = '172.31.90.253'
           registryCredential = 'dockerhub-cred'
           dockerImage = ''
           CHECK_URL = "http://3.87.64.198:8085/greeting"
