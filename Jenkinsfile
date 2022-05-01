@@ -1,11 +1,10 @@
 pipeline {
         environment {
           imagename = "shubhradeepghosh23/test-app"
-          tag = '1.0.4'
-          docker_host = '172.31.90.253'
+          tag = '1.0.2'
           registryCredential = 'dockerhub-cred'
           dockerImage = ''
-          CHECK_URL = "http://52.55.157.249:8085/greeting"
+          CHECK_URL = "http://3.87.64.198:8085/greeting"
           CMD = "curl --write-out %{http_code} --silent --output /dev/null ${CHECK_URL}"
     }
         agent any
@@ -22,7 +21,6 @@ pipeline {
                 '''
             }
         }
-   
 
           stage ('Build') {
             steps {
@@ -35,7 +33,7 @@ pipeline {
             }
         }
 
-          stage ("SonarQube analysis") {
+          stage("SonarQube analysis") {
             agent any
             steps {
               withSonarQubeEnv('sonar') {
@@ -68,18 +66,17 @@ pipeline {
             }
           }
         }
-          
-          stage('Deploy to Docker Container on Remote Docker Host EC2') {
+           stage('Deploy to Docker Container on Remote Docker Host EC2') {
             steps{   
               sshagent(credentials: ['docker-host-id']) {
                 sh "ssh -o StrictHostKeyChecking=no ubuntu@${docker_host} uptime"
+                sh "ssh -v ubuntu@${docker_host}"
                 sh "sudo docker run -d -p 8085:8085 ${imagename}:${tag}"
-                sleep 30 
-              }
-            }
-          } 
-
-
+                sleep 30
+         
+       }
+     }
+   }
            stage('Health Check Stage-One') {
              steps {
                script{
@@ -101,14 +98,13 @@ pipeline {
               }
           }
       }
-  }
-
+}
       post {
         always {
           emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS! \n Check console output at $BUILD_URL to view the results.', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!!'
           cleanWs()
         }
       }
-}
+    }
 
       
