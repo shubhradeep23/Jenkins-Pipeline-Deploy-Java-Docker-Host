@@ -1,7 +1,7 @@
 pipeline {
         environment {
           imagename = "shubhradeepghosh23/test-app"
-          tag = '1.0.0'
+          tag = 'testing-ansible'
           docker_host = '172.31.90.253'
           registryCredential = 'dockerhub-cred'
           dockerImage = ''
