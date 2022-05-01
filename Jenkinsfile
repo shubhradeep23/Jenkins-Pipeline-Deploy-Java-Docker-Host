@@ -72,7 +72,7 @@ pipeline {
               sshagent(credentials: ['docker-host-id']) {
                 sh "ssh -o StrictHostKeyChecking=no ubuntu@${docker_host} uptime"
                 sh "ssh -v ubuntu@${docker_host}"
-                sh "sudo docker run -d -p 8085:8085 ${imagename}:${tag}"
+                sh "docker run -d -p 8085:8085 ${imagename}:${tag}"
                 sleep 30
          
        }
