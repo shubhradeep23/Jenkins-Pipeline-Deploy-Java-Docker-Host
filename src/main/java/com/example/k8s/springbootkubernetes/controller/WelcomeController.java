@@ -8,7 +8,7 @@ public class WelcomeController {
 	
 	@RequestMapping("/greeting")
 	public String greeting() {
-		return "Congratulations on building your first successful jenkins pipeline !";
+		return "Congratulations on building your first successful jenkins pipeline";
 	}
 
 }
