@@ -68,15 +68,9 @@ pipeline {
           }
         }
           stage('Deploy to Docker Container on Remote Docker Host EC2') {
-            steps{ 
-              script {  
-                sshagent(credentials: ['docker-host-id']) {
-                  sh "ssh -o StrictHostKeyChecking=no ubuntu@${docker_host} uptime"
-//                sh "ssh -v ubuntu@${docker_host}"
-                  sh "docker run -d -p 8085:8085 ${imagename}:${tag}"
-                  sleep 30
-         }
-       }
+            steps{
+              sh 'cd /root/ansible'
+              sh "ansible-playbook -i hosts docker.yaml --extra-vars 'image_name=${imagename} image_tag=${tag}'"
      }
    }
           stage('Health Check Stage-One') {
