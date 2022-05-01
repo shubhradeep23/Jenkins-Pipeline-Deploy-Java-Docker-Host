@@ -1,0 +1,12 @@
+---
+- hosts: docker-host
+  become: True
+  tasks:
+    
+    - name: Start the container
+      docker_container:
+        name: java-app
+        image: "shubhradeepghosh23/test-app:{{image_tag}}"
+        state: started
+        published_ports:
+          - 0.0.0.0:8085:8085
