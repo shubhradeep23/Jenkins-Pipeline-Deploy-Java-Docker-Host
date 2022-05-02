@@ -51,6 +51,7 @@ Step 6: Using jenkins UI, Create Pipeline job with Pipeline with SCM & refer you
 
 Step 7: VS Code Editor, open new terminal> type the below commands to commit & push the changes you made to the empty github repo you created in Step2.
 git init
+git add .
 git commit -m "Jenkins Pipeline: Deploy Java App on Remote Docker EC2 using Ansible "
 git branch -M main
 git remote add origin https://your-github-repo.git
