@@ -55,6 +55,9 @@
     - name: Create default containers
       community.docker.docker_container:
         name: "{{ default_container_name }}{{ item }}"
+        build:
+          args:
+            listen_port: 8085
         image: "{{ default_container_image }}"
         command: "{{ default_container_command }}"
         state: present
