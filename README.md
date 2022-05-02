@@ -32,26 +32,26 @@ Under ansible directory, open hosts> add private-ip under [docker-host]
 
 change 2:
 Under ansible directory, open docker.yml> change image name from the command mentioned below-
-ansible.builtin.shell: sudo docker run -d -p 8085:8085 "<image-name>:{{image_tag}}"
+ansible.builtin.shell: sudo docker run -d -p 8085:8085 "image-name:{{image_tag}}"
 
 change 3:
 Under ansible directory, open install-docker.yml
-default_container_image: "<image-name>:{{image_tag}}"
+default_container_image: "image-name:{{image_tag}}"
 
 change 4:
 In Jenkinsfile, under 'environment' block, change the following variables: 
-imagename = <your-dockerhub-username>/<dockerhub-repo-or-image-name>  
-tag = <image-tag>
-docker_host = <private-ip-ec2-docker-host>
+imagename = your-dockerhub-username/dockerhub-repo-or-image-name  
+tag = image-tag
+docker_host = private-ip-ec2-docker-host
 registryCredential = 'dockerhub-cred'
 dockerImage = ''
-CHECK_URL = "http://<public-ip-ec2-docker-host>:<port no>/greeting"          
+CHECK_URL = "http://public-ip-ec2-docker-host:port no/greeting"          
 
 Step 6: VS Code Editor, open new terminal> type the below commands to commit & push the changes you made to the empty github repo you created in step2.
 git init
 git commit -m "Jenkins Pipeline: Deploy Java App on Remote Docker EC2 using Ansible "
 git branch -M main
-git remote add origin https://<your-github-repo>.git
+git remote add origin https://your-github-repo.git
 git push -u origin main
 
-Verify if java app is reachable through web browser with url: <public-ip-ec2-docker-host>:8085/greeting
+Verify if java app is reachable through web browser with url: public-ip-ec2-docker-host:8085/greeting
