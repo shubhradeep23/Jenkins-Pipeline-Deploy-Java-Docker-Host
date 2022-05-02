@@ -47,7 +47,9 @@ registryCredential = 'dockerhub-cred'
 dockerImage = ''
 CHECK_URL = "http://public-ip-ec2-docker-host:port no/greeting"          
 
-Step 6: VS Code Editor, open new terminal> type the below commands to commit & push the changes you made to the empty github repo you created in step2.
+Step 6: Using jenkins UI, Create Pipeline job with Pipeline with SCM & refer your github repo which was created in Step 2. Webhook Trigger should be enabled.
+
+Step 7: VS Code Editor, open new terminal> type the below commands to commit & push the changes you made to the empty github repo you created in Step2.
 git init
 git commit -m "Jenkins Pipeline: Deploy Java App on Remote Docker EC2 using Ansible "
 git branch -M main
