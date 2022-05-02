@@ -5,7 +5,7 @@ pipeline {
           docker_host = '172.31.28.155'
           registryCredential = 'dockerhub-cred'
           dockerImage = ''
-          CHECK_URL = "http://54.144.105.100:8085/greeting"
+          CHECK_URL = "http://52.91.216.177:8085/greeting"
           CMD = "curl --write-out %{http_code} --silent --output /dev/null ${CHECK_URL}"
     }
         agent any
@@ -69,6 +69,8 @@ pipeline {
         }
           stage('Deploy to Docker Container on Remote Docker Host EC2') {
             steps{
+              ansiblePlaybook credentialsId: 'docker-host', disableHostKeyChecking: true, installation: 'ansible', inventory: 'ansible/hosts', playbook: 'ansible/install-docker.yml'
+              sleep 15
               ansiblePlaybook credentialsId: 'docker-host', disableHostKeyChecking: true, extras: "-e image_tag=${tag}", installation: 'ansible', inventory: 'ansible/hosts', playbook: 'ansible/docker.yml'
               sleep 30
      }

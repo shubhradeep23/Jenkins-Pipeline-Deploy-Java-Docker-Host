@@ -1,5 +1,5 @@
 [docker-host]
-172.31.28.155
+172.31.30.235
 
 [docker-host:vars]
 ansible_python_interpreter=/usr/bin/python3
