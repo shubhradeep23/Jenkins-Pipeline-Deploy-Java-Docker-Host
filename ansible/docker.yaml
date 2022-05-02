@@ -2,7 +2,7 @@
 - hosts: docker-host
   become: true
   vars:
-    container_count: 1
+    #container_count: 1
     default_container_name: java-app
     default_container_image: "shubhradeepghosh23/test-app:{{image_tag}}"
     default_container_command: sleep 1d
@@ -54,11 +54,11 @@
 
     - name: Create default containers
       community.docker.docker_container:
-        name: "{{ default_container_name }}{{ item }}"
+        name: "{{ default_container_name }}"
         build:
           args:
             listen_port: 8085
         image: "{{ default_container_image }}"
         command: "{{ default_container_command }}"
         state: present
-      with_sequence: count={{ container_count }}
+      #with_sequence: count={{ container_count }}
