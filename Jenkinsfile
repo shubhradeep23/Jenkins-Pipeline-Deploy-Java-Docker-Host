@@ -69,9 +69,8 @@ pipeline {
         }
           stage('Deploy to Docker Container on Remote Docker Host EC2') {
             steps{
-              ansiblePlaybook credentialsId: 'docker-host', disableHostKeyChecking: true, extras: "-e image_tag=${tag}", installation: 'ansible', inventory: 'ansible/hosts', playbook: 'ansible/docker.yaml'
+              ansiblePlaybook credentialsId: 'docker-host', disableHostKeyChecking: true, extras: "-e image_tag=${tag}", installation: 'ansible', inventory: 'ansible/hosts', playbook: 'ansible/docker.yml'
               sleep 30
-//              ansiblePlaybook credentialsId: 'docker-host', disableHostKeyChecking: true, extras: "-e image_name=${imagename}"  "-e image_tag=${tag}", installation: 'ansible', inventory: 'ansible/hosts', playbook: 'ansible/docker.yaml'
      }
    }
           stage('Health Check Stage-One') {
