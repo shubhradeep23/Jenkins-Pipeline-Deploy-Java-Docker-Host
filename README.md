@@ -1,6 +1,6 @@
 # Jenkins Pipeline: Deploy Java App on Docker Host running on Remote EC2 Instance using Ansible
 
-Pre-requisites in Jenkins: Download the Word Document from https://github.com/shubhradeep23/jenkins-sonar-eks to first setup Jenkins, SonarQube, Maven, Docker, but skip the EKS creation part.
+Pre-requisites in Jenkins: Download & follow Instructions in the Word Document from https://github.com/shubhradeep23/jenkins-sonar-eks to first setup Jenkins, SonarQube, Maven, Docker, but skip the EKS creation part.
 
 A. Install Ansible Plugin in Jenkins
 
