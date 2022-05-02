@@ -10,7 +10,7 @@ B. Manage Jenkins> Manage Credentials> Add Credentials>
    - Username: ubuntu
    - Private Key: select 'Enter Directly'> Copy Paste the entire content of pem file you used to create AWS EC2 instances downloaded on your personal machine
    - Click OK
-   - 
+   
 C. Manage Jenkins> Global Tool Configuration> Add Ansible:
    - Name: ansible
    - Path to ansible executables directory: /usr/local/bin/
