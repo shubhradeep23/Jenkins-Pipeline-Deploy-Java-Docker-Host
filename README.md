@@ -14,9 +14,13 @@ C. Manage Jenkins> Global Tool Configuration> Add Ansible:
    - Save
 
 Step 1: Create a ubuntu EC2 t2.micro with same pem keys> default VPC> default Security Group> change storage to 30GB (optional).
+
 Step 2: Create empty github repo without README.md
+
 Step 3: Download the zip file: https://github.com/shubhradeep23/Jenkins-Pipeline-Deploy-Java-Docker-Host-Ansible.git
+
 Step 4: Create empty folder & extract above zip to this empty folder.
+
 Step 5: Open above folder you created in VS Code editor & make the following changes:
 
 change 1:
