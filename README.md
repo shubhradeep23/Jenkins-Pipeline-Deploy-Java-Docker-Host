@@ -1,17 +1,21 @@
 # Jenkins-Pipeline-Deploy-Java-Docker-Host-Ansible
 
 Pre-requisites in Jenkins: Download the Word Document from https://github.com/shubhradeep23/jenkins-sonar-eks to first setup Jenkins, SonarQube, Maven, Docker, but skip the EKS creation part.
+
 A. Install Ansible Plugin in Jenkins
+
 B. Manage Jenkins> Manage Credentials> Add Credentials> 
    - Kind: SSH Username with private key
    - ID: docker-host
    - Username: ubuntu
    - Private Key: select 'Enter Directly'> Copy Paste the entire content of pem file you used to create AWS EC2 instances downloaded on your personal machine
    - Click OK
+   - 
 C. Manage Jenkins> Global Tool Configuration> Add Ansible:
    - Name: ansible
    - Path to ansible executables directory: /usr/local/bin/
    - Save
+
 
 Step 1: Create a ubuntu EC2 t2.micro with same pem keys> default VPC> default Security Group> change storage to 30GB (optional).
 
