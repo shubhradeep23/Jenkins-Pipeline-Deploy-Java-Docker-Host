@@ -2,10 +2,10 @@ pipeline {
         environment {
           imagename = "shubhradeepghosh23/test-app"
           tag = 'testing'
-          docker_host = '172.31.90.253'
+          docker_host = '172.31.28.155'
           registryCredential = 'dockerhub-cred'
           dockerImage = ''
-          CHECK_URL = "http://54.198.87.171:8085/greeting"
+          CHECK_URL = "http://54.144.105.100:8085/greeting"
           CMD = "curl --write-out %{http_code} --silent --output /dev/null ${CHECK_URL}"
     }
         agent any
